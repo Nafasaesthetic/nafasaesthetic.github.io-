@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nafas Skincare | Premium Natural Fragrances</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+            color: #333;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .logo-container img {
+            height: 50px;
+            width: auto;
+        }
+        
+        .brand-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ec4899;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #ec4899;
+        }
+        
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 24px;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ec4899;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(45deg, #fdf2f8, #fbcfe8);
+            border-radius: 20px;
+            margin: 40px 0;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            color: #831843;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #ec4899;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(236, 72, 153, 0.3);
+        }
+        
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .product-image-container {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            background: #f8f8f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+        
+        .product-content {
+            padding: 25px;
+        }
+        
+        .product-title {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .product-price {
+            color: #ec4899;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .buy-button {
+            display: block;
+            background: #000;
+            color: white;
+            text-align: center;
+            padding: 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .buy-button:hover {
+            background: #333;
+        }
+        
+        footer {
+            background: white;
+            padding: 40px 0;
+            margin-top: 60px;
+            border-top: 1px solid #eee;
+        }
+        
+        .success-message {
+            background: #10b981;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+            animation: fadeIn 1s;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.3s;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .modal-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+        
+        .modal-title {
+            color: #831843;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .modal-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .modal-price {
+            color: #ec4899;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .payment-option {
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .payment-option h4 {
+            color: #0369a1;
+            margin-bottom: 5px;
+        }
+        
+        /* Cart Modal Styles */
+        .cart-items {
+            max-height: 300px;
+            overflow-y: auto;
+            margin: 20px 0;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 10px;
+        }
+        
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        
+        .cart-item-image {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            margin-right: 15px;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-price {
+            color: #ec4899;
+            font-weight: bold;
+        }
+        
+        .cart-item-remove {
+            background: #fee2e2;
+            color: #dc2626;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f8f8;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .cart-total-amount {
+            color: #ec4899;
+        }
+        
+        /* Checkout Form Styles */
+        .checkout-form {
+            display: none;
+        }
+        
+        .checkout-form h3 {
+            color: #831843;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .checkout-step {
+            display: none;
+        }
+        
+        .checkout-step.active {
+            display: block;
+        }
+        
+        .checkout-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .checkout-btn {
+            background: #ec4899;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .checkout-btn:hover {
+            background: #db2777;
+        }
+        
+        .checkout-btn.back {
+            background: #6b7280;
+        }
+        
+        .checkout-btn.back:hover {
+            background: #4b5563;
+        }
+        
+        .order-summary {
+            background: #f8f8f8;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .order-summary h4 {
+            color: #831843;
+            margin-bottom: 15px;
+        }
+        
+        .order-summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .order-confirmation {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .order-confirmation h3 {
+            color: #10b981;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+        
+        .confirmation-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .brand-name {
+                font-size: 20px;
+            }
+            
+            .logo-container img {
+                height: 40px;
+            }
+            
+            .products {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo-container">
+                    <img src="images/logo-nafas-enhanced.png" alt="Nafas Skincare Logo">
+                    <span class="brand-name">Nafas Skincare</span>
+                </a>
+                <div class="nav-links">
+                    <a href="#">Home</a>
+                    <a href="#products">Products</a>
+                    <a href="#contact">Contact</a>
+                    <div class="cart-icon" id="cartIcon">
+                        🛒
+                        <span class="cart-count" id="cartCount">0</span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="container">
+        <div class="success-message">
+            <h2>🎉 Your Professional Skincare Store is Live! 🎉</h2>
+            <p>Congratulations on building your first e-commerce website!</p>
+            <p><strong>Date Launched:</strong> <span id="currentDate"></span></p>
+        </div>
+        
+        <section class="hero">
+            <h1>Revitalize Your Senses</h1>
+            <p>Discover our exclusive collection of 30+ premium natural fragrances and skincare products, carefully crafted to enhance your daily ritual.</p>
+            <a href="#products" class="cta-button">Explore Collection</a>
+        </section>
+        
+        <section id="products">
+            <h2 style="font-size: 32px; margin-bottom: 30px; color: #831843; text-align: center;">Our Signature Products</h2>
+            
+            <div class="products">
+                <!-- Product 1 -->
+                <div class="product-card" data-name="Love Ritual Pheromone Body Mist 150 ml" data-price="15" data-image="images/love-ritual.jpg" data-description="An enchanting blend of rose, peach, musk & wood - your Love Ritual, a seductive timeless embrace with every spritz.">
+                    <div class="product-image-container">
+                        <img src="images/love-ritual.jpg" alt="Love Ritual Body Mist" class="product-image">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Love Ritual Pheromone Body Mist 150 ml</h3>
+                        <p class="product-price">$15.00</p>
+                        <button class="buy-button">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card" data-name="Passion Spell Pheromone Body Mist 150 ml" data-price="15" data-image="images/passion-spell.jpg" data-description="A captivating blend of citrus, pear and white musk. Passion Spell covers you with mysterious charm and irresistible allure.">
+                    <div class="product-image-container">
+                        <img src="images/passion-spell.jpg" alt="Passion Spell Body Mist" class="product-image">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Passion Spell Pheromone Body Mist 150 ml</h3>
+                        <p class="product-price">$15.00</p>
+                        <button class="buy-button">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card" data-name="Mystic Musk Body Oil 50 ml" data-price="15" data-image="images/mystic-musk.jpg" data-description="Pure radiant skin with every drop, can be used for sensitive areas.">
+                    <div class="product-image-container">
+                        <img src="images/mystic-musk.jpg" alt="Mystic Musk Body Oil" class="product-image">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Mystic Musk Body Oil 50 ml</h3>
+                        <p class="product-price">$15.00</p>
+                        <button class="buy-button">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card" data-name="Cedar Body Oil 50 ml" data-price="15" data-image="images/cedar-oil.jpg" data-description="Cedarwood oil supports clear, balanced skin. Its antibacterial and antifungal properties help fight acne and protect the skin barrier. It tightens pores and controls excess oil, while its anti-inflammatory action soothes redness and irritation.">
+                    <div class="product-image-container">
+                        <img src="images/cedar-oil.jpg" alt="Cedar Body Oil" class="product-image">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Cedar Body Oil 50 ml</h3>
+                        <p class="product-price">$15.00</p>
+                        <button class="buy-button">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card" data-name="Green tea & Lemongrass Body Lotion 100 ml" data-price="15" data-image="images/green-tea-body-lotion.jpg" data-description="A refreshing fusion of green tea, lemongrass, and nourishing oils, your Vitality Ritual, an energizing touch of nature with every glow.">
+                    <div class="product-image-container">
+                        <img src="images/green-tea-body-lotion.jpg" alt="Green Tea Body Lotion" class="product-image">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Green tea & Lemongrass Body Lotion 100 ml</h3>
+                        <p class="product-price">$15.00</p>
+                        <button class="buy-button">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card" data-name="Musk Body Lotion 100 ml" data-price="15" data-image="images/musk-body-lotion.jpg" data-description="A sensual harmony of musk, almond, and soothing oils – your Serenity Ritual, a timeless touch of nature with every caress.">
+                    <div class="product-image-container">
+                        <img src="images/musk-body-lotion.jpg" alt="Musk Body Lotion" class="product-image">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Musk Body Lotion 100 ml</h3>
+                        <p class="product-price">$15.00</p>
+                        <button class="buy-button">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 7 -->
+                <div class="product-card" data-name="Ocean Spell Hair Treatment 100 ml" data-price="15" data-image="images/hair-treatment.jpg" data-description="A unique treatment for your hair, leaves hair silky smooth and repairs hair follicle. Shake well before use. Spray evenly on damp hair, focusing on mid-lengths and ends. Do not rinse. Blow-dry or style as usual.">
+                    <div class="product-image-container">
+                        <img src="images/hair-treatment.jpg" alt="Hair Treatment" class="product-image">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Ocean Spell Hair Treatment 100 ml</h3>
+                        <p class="product-price">$15.00</p>
+                        <button class="buy-button">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 8 -->
+                <div class="product-card" data-name="Tanning & Tightening Body Oil 250 ml" data-price="15" data-image="images/tanning-tightening.jpg" data-description="Natural oil with UV filter for a shining tan and for skin tightening at the same time.">
+                    <div class="product-image-container">
+                        <img src="images/tanning-tightening.jpg" alt="Tanning & Tightening Body Oil" class="product-image">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Tanning & Tightening Body Oil 250 ml</h3>
+                        <p class="product-price">$15.00</p>
+                        <button class="buy-button">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 9 -->
+                <div class="product-card" data-name="Echo Perfume 100 ml" data-price="35" data-image="images/echo-perfume.JPG" data-description="High Concentrated perfume that lasts for 48 hours, a fearless blend of freedom and depth, Echo captures the tension between bold florals and sensual warmth. Lavender and orange blossom lead into a heart of jasmine and glowing white oud, grounded by creamy vanilla and musks. A signature scent that resonates long after the moment has passed.">
+                    <div class="product-image-container">
+                        <img src="images/echo-perfume.JPG" alt="Echo Perfume" class="product-image">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Echo Perfume 100 ml</h3>
+                        <p class="product-price">$35.00</p>
+                        <button class="buy-button">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 10 -->
+                <div class="product-card" data-name="Soul Perfume 100 ml" data-price="35" data-image="images/soul-perfume.JPG" data-description="High Concentrated perfume that lasts for 48 hours. A daring tribute to passion, Soul embodies intensity, elegance, and emotion in every note. A blend of velvety florals, sensual spices, and rich resins creates a fragrance that's unforgettable — an essence that lingers long after you've left the room.">
+                    <div class="product-image-container">
+                        <img src="images/soul-perfume.JPG" alt="Soul Perfume" class="product-image">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Soul Perfume 100 ml</h3>
+                        <p class="product-price">$35.00</p>
+                        <button class="buy-button">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 11 -->
+                <div class="product-card" data-name="White Flowers Diffuser 120 ml" data-price="10" data-image="images/white-flowers-diffuser.JPG" data-description="120 ml Diffuser, powerful scent. Scents: Jasmine, Gardenia & white flowers.">
+                    <div class="product-image-container">
+                        <img src="images/white-flowers-diffuser.JPG" alt="White Flowers Diffuser" class="product-image">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">White Flowers Diffuser 120 ml</h3>
+                        <p class="product-price">$10.00</p>
+                        <button class="buy-button">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 12 -->
+                <div class="product-card" data-name="Chamomile & Green Tea Face Soap 90g" data-price="4" data-image="images/chamomile-green-tea-soap.png" data-description="This special blend of 'Green Tea & Chamomile' calms and nourishes your skin, while green tea helps protect against impurities, leaving your complexion smooth, radiant, and naturally balanced.">
+                    <div class="product-image-container">
+                        <img src="images/chamomile-green-tea-soap.png" alt="Chamomile & Green Tea Face Soap" class="product-image">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Chamomile & Green Tea Face Soap 90g</h3>
+                        <p class="product-price">$4.00</p>
+                        <button class="buy-button">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 13 -->
+                <div class="product-card" data-name="Rosemary Rush Hair Soap 90g" data-price="4" data-image="images/rosemary-rush-soap.jpg" data-description="Refresh and renew your skin with 'Rosemary Rush', our organic face soap bar crafted with pure rosemary extracts and essential oils. Known for its cleansing and purifying qualities, rosemary helps gently lift away impurities, leaving your skin feeling fresh, balanced, and revitalized.">
+                    <div class="product-image-container">
+                        <img src="images/rosemary-rush-soap.jpg" alt="Rosemary Rush Hair Soap" class="product-image">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Rosemary Rush Hair Soap 90g</h3>
+                        <p class="product-price">$4.00</p>
+                        <button class="buy-button">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 14 -->
+                <div class="product-card" data-name="Sea Salt Body Soap 90g" data-price="4" data-image="images/sea-salt-soap.jpg" data-description="Sea Salts — an organic soap bar crafted with mineral-rich sea salts and pure essential oils. Designed to gently exfoliate and cleanse, this soap helps detoxify your skin, promoting a smooth and refreshed feel. Enjoy the calming, ocean-inspired scent as you revitalize your skin with each use.">
+                    <div class="product-image-container">
+                        <img src="images/sea-salt-soap.jpg" alt="Sea Salt Body Soap" class="product-image">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Sea Salt Body Soap 90g</h3>
+                        <p class="product-price">$4.00</p>
+                        <button class="buy-button">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 15 -->
+                <div class="product-card" data-name="Musk Refuge Body Soap 90g" data-price="4" data-image="images/musk-refuge-soap.jpg" data-description="Experience rejuvenation with 'Musk Refuge', our fancy organic soap bar, expertly crafted with natural ingredients for a harmonious balance of your skin texture and a long lasting fragrance.">
+                    <div class="product-image-container">
+                        <img src="images/musk-refuge-soap.jpg" alt="Musk Refuge Body Soap" class="product-image">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Musk Refuge Body Soap 90g</h3>
+                        <p class="product-price">$4.00</p>
+                        <button class="buy-button">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Product 16 -->
+                <div class="product-card" data-name="Honey Leefah Body Soap 90g" data-price="6" data-image="images/honey-leefah.jpg" data-description="Discover the gentle exfoliation and hydration of 'Honey Leefah', our organic body soap bar, blending natural loofah and honey for a luxurious and invigorating cleansing experience.">
+                    <div class="product-image-container">
+                        <img src="images/honey-leefah.jpg" alt="Honey Leefah Body Soap" class="product-image">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Honey Leefah Body Soap 90g</h3>
+                        <p class="product-price">$6.00</p>
+                        <button class="buy-button">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <img id="modalImage" src="" alt="" class="modal-image">
+            <h2 id="modalTitle" class="modal-title"></h2>
+            <p id="modalDescription" class="modal-description"></p>
+            <p id="modalPrice" class="modal-price"></p>
+            
+            <div class="payment-option">
+                <h4>💵 Cash on Delivery Only</h4>
+                <p>Pay when you receive your order. No online payment required.</p>
+            </div>
+            
+            <button id="modalBuyButton" class="buy-button">Add to Cart</button>
+        </div>
+    </div>
+    
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <h2 class="modal-title">🛒 Your Shopping Cart</h2>
+            
+            <div id="cartStep1" class="checkout-step active">
+                <div id="cartItems" class="cart-items">
+                    <!-- Cart items will be inserted here by JavaScript -->
+                    <p style="text-align: center; color: #666; padding: 40px;">Your cart is empty</p>
+                </div>
+                
+                <div id="cartTotal" class="cart-total" style="display: none;">
+                    <span>Total:</span>
+                    <span class="cart-total-amount">$0.00</span>
+                </div>
+                
+                <div class="checkout-navigation">
+                    <button class="checkout-btn back" onclick="closeCartModal()">Continue Shopping</button>
+                    <button id="checkoutBtn" class="checkout-btn" onclick="showCheckoutForm()" disabled>Proceed to Checkout</button>
+                </div>
+            </div>
+            
+            <!-- Checkout Form -->
+            <div id="checkoutStep" class="checkout-step">
+                <h3>📦 Delivery Information</h3>
+                
+                <div class="order-summary">
+                    <h4>Order Summary</h4>
+                    <div id="orderSummaryItems">
+                        <!-- Order items will be inserted here -->
+                    </div>
+                    <div class="order-summary-item" style="border-top: 2px solid #333; padding-top: 10px; font-weight: bold;">
+                        <span>Total Amount:</span>
+                        <span id="orderTotal">$0.00</span>
+                    </div>
+                </div>
+                
+                <form id="checkoutForm">
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address">Delivery Address *</label>
+                        <textarea id="address" name="address" required placeholder="Street, Building, Floor, Apartment"></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city">City *</label>
+                            <input type="text" id="city" name="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="area">Area/Region *</label>
+                            <input type="text" id="area" name="area" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="notes">Delivery Notes (Optional)</label>
+                        <textarea id="notes" name="notes" placeholder="Any special instructions for delivery..."></textarea>
+                    </div>
+                    
+                    <div class="payment-option">
+                        <h4>💵 Payment Method: Cash on Delivery</h4>
+                        <p>You will pay cash when you receive your order.</p>
+                    </div>
+                    
+                    <div class="checkout-navigation">
+                        <button type="button" class="checkout-btn back" onclick="backToCart()">← Back to Cart</button>
+                        <button type="submit" class="checkout-btn">Place Order</button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Order Confirmation -->
+            <div id="confirmationStep" class="checkout-step">
+                <div class="order-confirmation">
+                    <div class="confirmation-icon">✅</div>
+                    <h3>Order Confirmed!</h3>
+                    <p>Thank you for your purchase! Your order has been received.</p>
+                    <p><strong>Order ID:</strong> <span id="orderId">NAFAS-</span></p>
+                    <p>We will contact you within 24 hours to confirm delivery details.</p>
+                    <p>Payment: <strong>Cash on Delivery</strong></p>
+                    <div style="margin-top: 30px;">
+                        <button class="checkout-btn" onclick="closeCartModal()">Continue Shopping</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container" style="text-align: center;">
+            <p style="color: #666; font-size: 16px;">© 2025 Nafas Skincare. All rights reserved.</p>
+            <p style="color: #888; margin-top: 10px; font-size: 14px;">Premium natural fragrances crafted with care</p>
+            <p style="color: #aaa; margin-top: 5px; font-size: 12px;">Free shipping on orders over $50</p>
+        </div>
+    </footer>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="container" style="margin: 60px auto;">
+        <div style="background: white; padding: 40px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.08);">
+            <h2 style="text-align: center; color: #831843; margin-bottom: 40px; font-size: 32px;">Get In Touch</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+                <!-- Contact Info -->
+                <div>
+                    <h3 style="color: #ec4899; margin-bottom: 20px; font-size: 24px;">📍 Contact Information</h3>
+                    <div style="display: flex; align-items: start; gap: 15px; margin-bottom: 20px;">
+                        <div style="background: #fce7f3; padding: 12px; border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;">
+                            📍
+                        </div>
+                        <div>
+                            <p style="font-weight: bold; margin-bottom: 5px;">Main Office</p>
+                            <p style="color: #666;">Jounieh<br>Lebanon</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: start; gap: 15px; margin-bottom: 20px;">
+                        <div style="background: #fce7f3; padding: 12px; border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;">
+                            📞
+                        </div>
+                        <div>
+                            <p style="font-weight: bold; margin-bottom: 5px;">Phone & Email</p>
+                            <p style="color: #666;">+961-70-866 882<br>nafas.aesthetic@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: start; gap: 15px;">
+                        <div style="background: #fce7f3; padding: 12px; border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;">
+                            ⏰
+                        </div>
+                        <div>
+                            <p style="font-weight: bold; margin-bottom: 5px;">Business Hours</p>
+                            <p style="color: #666;">Mon-Fri: 9AM-9PM<br>Sat-Sun: 11AM-9PM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div>
+                    <h3 style="color: #ec4899; margin-bottom: 20px; font-size: 24px;">✉️ Send Us a Message</h3>
+                    <form id="contactForm" style="display: flex; flex-direction: column; gap: 15px;">
+                        <input type="text" placeholder="Your Full Name" required 
+                               style="padding: 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px;">
+                        
+                        <input type="email" placeholder="Your Email Address" required 
+                               style="padding: 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px;">
+                        
+                        <input type="text" placeholder="Subject" 
+                               style="padding: 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px;">
+                        
+                        <textarea placeholder="Your Message..." rows="5" required 
+                                  style="padding: 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; resize: vertical;"></textarea>
+                        
+                        <button type="submit" 
+                                style="background: #ec4899; color: white; padding: 16px; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; transition: background 0.3s;">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        // ============================================
+        // IMPORTANT: UPDATE THIS WITH YOUR GOOGLE SCRIPT URL
+        // ============================================
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbym-7-d9XfEO8As3145lW7fn-RhuPJLDWoKioOfseu523RqBrT3VcUdM1Fp7KKFqS8q6A/exec';
+        // Example: https://script.google.com/macros/s/ABC123xyz/exec
+        // ============================================
+        
+        // Shopping Cart System
+        let cart = JSON.parse(localStorage.getItem('nafasCart')) || [];
+        
+        // Display current date
+        document.getElementById('currentDate').textContent = new Date().toDateString();
+        
+        // Update cart count
+        function updateCartCount() {
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cartCount').textContent = count;
+            localStorage.setItem('nafasCart', JSON.stringify(cart));
+        }
+        
+        // Add to cart function
+        function addToCart(productName, price, image) {
+            const existingItem = cart.find(item => item.name === productName);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    name: productName,
+                    price: price,
+                    image: image,
+                    quantity: 1
+                });
+            }
+            
+            updateCartCount();
+            showCartNotification(productName);
+        }
+        
+        // Remove from cart
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartCount();
+            renderCartItems();
+        }
+        
+        // Show notification
+        function showCartNotification(productName) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: #10b981;
+                color: white;
+                padding: 15px 25px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                z-index: 10000;
+            `;
+            notification.innerHTML = `✓ Added ${productName} to cart`;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => notification.remove(), 3000);
+        }
+        
+        // Render cart items
+        function renderCartItems() {
+            const cartItemsContainer = document.getElementById('cartItems');
+            const cartTotalContainer = document.getElementById('cartTotal');
+            
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p style="text-align: center; color: #666; padding: 40px;">Your cart is empty</p>';
+                cartTotalContainer.style.display = 'none';
+                document.getElementById('checkoutBtn').disabled = true;
+                return;
+            }
+            
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+            
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                itemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                    <div class="cart-item-details">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">$${item.price} x ${item.quantity} = $${itemTotal.toFixed(2)}</div>
+                    </div>
+                    <button class="cart-item-remove" onclick="removeFromCart(${index})">Remove</button>
+                `;
+                cartItemsContainer.appendChild(itemElement);
+            });
+            
+            document.getElementById('checkoutBtn').disabled = false;
+            cartTotalContainer.style.display = 'flex';
+            document.querySelector('.cart-total-amount').textContent = `$${total.toFixed(2)}`;
+        }
+        
+        // Cart modal functions
+        function openCartModal() {
+            document.getElementById('cartModal').style.display = 'flex';
+            renderCartItems();
+        }
+        
+        function closeCartModal() {
+            document.getElementById('cartModal').style.display = 'none';
+            showStep('cartStep1');
+        }
+        
+        function showStep(stepId) {
+            document.querySelectorAll('.checkout-step').forEach(step => {
+                step.classList.remove('active');
+            });
+            document.getElementById(stepId).classList.add('active');
+        }
+        
+        function showCheckoutForm() {
+            const orderSummaryItems = document.getElementById('orderSummaryItems');
+            orderSummaryItems.innerHTML = '';
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const itemElement = document.createElement('div');
+                itemElement.className = 'order-summary-item';
+                itemElement.innerHTML = `
+                    <span>${item.name} (x${item.quantity})</span>
+                    <span>$${itemTotal.toFixed(2)}</span>
+                `;
+                orderSummaryItems.appendChild(itemElement);
+            });
+            
+            document.getElementById('orderTotal').textContent = `$${total.toFixed(2)}`;
+            showStep('checkoutStep');
+        }
+        
+        function backToCart() {
+            showStep('cartStep1');
+        }
+        
+        // Generate order ID
+        function generateOrderId() {
+            const timestamp = Date.now();
+            const random = Math.floor(Math.random() * 1000);
+            return `NAFAS-${timestamp}-${random}`;
+        }
+        
+        // ============================================
+        // CHECKOUT FORM SUBMISSION - SEND TO GOOGLE SCRIPT
+        // ============================================
+        document.getElementById('checkoutForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Collect form data
+            const orderData = {
+                formType: 'order',  // Tell Google Script it's an order
+                orderId: generateOrderId(),
+                customer: {
+                    name: document.getElementById('fullName').value,
+                    phone: document.getElementById('phone').value,
+                    email: document.getElementById('email').value,
+                    address: document.getElementById('address').value,
+                    city: document.getElementById('city').value,
+                    area: document.getElementById('area').value,
+                    notes: document.getElementById('notes').value
+                },
+                items: cart,
+                total: cart.reduce((total, item) => total + (item.price * item.quantity), 0),
+                date: new Date().toLocaleString(),
+                paymentMethod: 'Cash on Delivery'
+            };
+            
+            // Show loading
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending Order...';
+            submitBtn.disabled = true;
+            
+            try {
+                // Send to Google Apps Script
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(orderData)
+                });
+                
+                // Show success
+                document.getElementById('orderId').textContent = orderData.orderId;
+                showStep('confirmationStep');
+                
+                // Clear cart
+                cart = [];
+                updateCartCount();
+                localStorage.removeItem('nafasCart');
+                
+                // Reset form
+                e.target.reset();
+                
+                // Show success message
+                alert(`✅ Order #${orderData.orderId} placed!\nCheck your email for confirmation.`);
+                
+            } catch (error) {
+                console.error('Error:', error);
+                // Still show confirmation (order might have gone through)
+                document.getElementById('orderId').textContent = orderData.orderId;
+                showStep('confirmationStep');
+                cart = [];
+                updateCartCount();
+                localStorage.removeItem('nafasCart');
+                e.target.reset();
+                
+                alert(`✅ Order #${orderData.orderId} submitted!\nWe'll contact you at ${orderData.customer.phone}`);
+            } finally {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+        
+        // ============================================
+        // CONTACT FORM SUBMISSION - SEND TO GOOGLE SCRIPT
+        // ============================================
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const contactData = {
+                formType: 'contact',  // Tell Google Script it's a contact form
+                name: this.querySelector('input[type="text"]').value,
+                email: this.querySelector('input[type="email"]').value,
+                subject: this.querySelector('input[placeholder="Subject"]').value,
+                message: this.querySelector('textarea').value
+            };
+            
+            // Show loading
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            try {
+                // Send to Google Apps Script
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(contactData)
+                });
+                
+                alert(`✅ Thank you, ${contactData.name}! Message sent.\nWe'll respond within 24 hours.`);
+                this.reset();
+                
+            } catch (error) {
+                console.error('Error:', error);
+                alert('✅ Message received! (Email confirmation may be delayed)');
+                this.reset();
+            } finally {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+        
+        // Initialize cart count
+        updateCartCount();
+        
+        // Cart icon click
+        document.getElementById('cartIcon').addEventListener('click', openCartModal);
+        
+        // Product modal
+        const modal = document.getElementById('productModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalPrice = document.getElementById('modalPrice');
+        const modalClose = document.querySelector('.modal-close');
+        const modalBuyButton = document.getElementById('modalBuyButton');
+        
+        // Open modal when product card is clicked
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (e.target.classList.contains('buy-button')) return;
+                
+                const name = this.getAttribute('data-name');
+                const price = this.getAttribute('data-price');
+                const image = this.getAttribute('data-image');
+                const description = this.getAttribute('data-description');
+                
+                modalImage.src = image;
+                modalTitle.textContent = name;
+                modalDescription.textContent = description;
+                modalPrice.textContent = `$${price}.00`;
+                
+                modalBuyButton.onclick = () => {
+                    modal.style.display = 'none';
+                    addToCart(name, parseFloat(price), image);
+                };
+                
+                modal.style.display = 'flex';
+            });
+        });
+        
+        // Close modals
+        modalClose.addEventListener('click', () => modal.style.display = 'none');
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.style.display = 'none';
+        });
+        
+        // Add to cart buttons
+        document.querySelectorAll('.buy-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                const productCard = this.closest('.product-card');
+                const productName = productCard.getAttribute('data-name');
+                const productPrice = parseFloat(productCard.getAttribute('data-price'));
+                const productImage = productCard.getAttribute('data-image');
+                
+                addToCart(productName, productPrice, productImage);
+                
+                // Button feedback
+                this.textContent = 'Added!';
+                this.style.background = '#10b981';
+                
+                setTimeout(() => {
+                    this.textContent = 'Add to Cart';
+                    this.style.background = '';
+                }, 2000);
+            });
+        });
+        
+        // Animate product cards on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+        
+        console.log("🌟 Nafas Skincare website loaded!");
+        console.log("🛒 16 products ready!");
+        console.log("📧 Forms connected to Google Apps Script");
+    </script>
+</body>
+</html>
