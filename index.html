@@ -589,12 +589,7 @@
     </header>
     
     <main class="container">
-        <div class="success-message">
-            <h2>🎉 Your Professional Skincare Store is Live! 🎉</h2>
-            <p>Congratulations on building your first e-commerce website!</p>
-            <p><strong>Date Launched:</strong> <span id="currentDate"></span></p>
-        </div>
-        
+               
         <section class="hero">
             <h1>Revitalize Your Senses</h1>
             <!-- UPDATED TEXT -->
@@ -1007,10 +1002,7 @@
         
         // Shopping Cart System
         let cart = JSON.parse(localStorage.getItem('nafasCart')) || [];
-        
-        // Display current date
-        document.getElementById('currentDate').textContent = new Date().toDateString();
-        
+                           
         // Update cart count
         function updateCartCount() {
             const count = cart.reduce((total, item) => total + item.quantity, 0);
@@ -1361,3 +1353,4 @@
     </script>
 </body>
 </html>
+
